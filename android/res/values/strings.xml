@@ -2,5 +2,6 @@
 <resources>
 
     <string name="app_name">my-gdx-game</string>
-
+    <string name="app_id">50020010276</string>
+    <string name="leaderboard_key">CgkIpJKzq7oBEAIQBg</string>
 </resources>
