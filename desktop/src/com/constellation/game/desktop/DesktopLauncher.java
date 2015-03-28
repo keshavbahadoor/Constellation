@@ -6,6 +6,9 @@ import com.constellation.game.MainGame;
 
 import services.GoogleServices;
 
+/**
+ * TODO : refactor google services separately
+ */
 public class DesktopLauncher implements GoogleServices
 {
     private boolean signedInStateGPGS = false;
@@ -13,6 +16,8 @@ public class DesktopLauncher implements GoogleServices
 	public static void main (String[] arg)
     {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
+        config.width = 800;
+        config.height = 480;
 		new LwjglApplication(new MainGame(), config);
 	}
 
