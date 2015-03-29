@@ -6,6 +6,8 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.utils.viewport.StretchViewport;
+import com.constellation.game.MainGame;
 
 /**
  * Abstract screen implementation
@@ -13,6 +15,9 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
  */
 public abstract class AbstractScreen implements Screen
 {
+    private static final int SCREEN_WIDTH = 800;
+    private static final int SCREEN_HEIGHT = 480;
+
     protected SpriteBatch spriteBatch;
     protected Game game;
     protected Stage stage;
@@ -27,14 +32,17 @@ public abstract class AbstractScreen implements Screen
     {
         this.game = game;
         this.spriteBatch = new SpriteBatch();
-        this.stage = new Stage();
+        this.stage = new Stage(new StretchViewport(800, 480));
         this.timer = 0.0F;
         this.timeDuration = 1.0F;
 
         // set input processor to stage
         Gdx.input.setInputProcessor(stage);
 
-        // update current stage
+        //stage.setViewport(game.getViewport());
+        stage.getViewport().update(480, 800);
+
+        // TODO : update current stage - use service?
 
         // Load any content
         this.loadContent();
@@ -102,8 +110,7 @@ public abstract class AbstractScreen implements Screen
 
         if (stage!=null)
         {
-//            stage.setViewport(Globals.SCREEN_WIDTH, Globals.SCREEN_HEIGHT, true);
-//            stage.getCamera().translate(-stage.getGutterWidth(), -stage.getGutterHeight(), 0);
+            this.stage.getViewport().update(width, height, false);
         }
 
     }
