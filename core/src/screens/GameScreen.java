@@ -1,20 +1,27 @@
 package screens;
 
 import com.badlogic.gdx.Game;
+import com.uwsoft.editor.renderer.resources.ResourceManager;
 
 import stages.MainStage;
 import system.AbstractScreen;
+import system.CustomResourceManager;
 
 /**
  * Created by Keshav on 3/28/2015.
  */
 public class GameScreen extends AbstractScreen
 {
+    private CustomResourceManager rm;
 
     public GameScreen(Game game)
     {
         super(game);
-        this.stage = new MainStage();
+
+        rm = new CustomResourceManager();
+        rm.initCustomResources();
+
+        this.stage = new MainStage(rm);
     }
 
     @Override

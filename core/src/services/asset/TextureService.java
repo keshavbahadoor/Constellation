@@ -30,7 +30,7 @@ public class TextureService implements TextureInterface
         mainFont = new BitmapFont();
         try
         {
-            imageAssets.put("splashscreen",	 loadTexture ("splashScreen2"));
+            imageAssets.put("splashscreen",	 loadTexture ("splashscreen"));
         }
         catch (Exception ex)
         {

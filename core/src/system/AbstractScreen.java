@@ -40,7 +40,7 @@ public abstract class AbstractScreen implements Screen
         Gdx.input.setInputProcessor(stage);
 
         //stage.setViewport(game.getViewport());
-        stage.getViewport().update(480, 800);
+        //stage.getViewport().update(480, 800);
 
         // TODO : update current stage - use service?
 

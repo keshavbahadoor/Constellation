@@ -1,1 +1,1 @@
-{"originalResolution":{"name":"orig","width":800,"height":480},"resolutions":[{"name":"small","width":480,"height":320},{"name":"1080p","width":1920,"height":1080}],"scenes":[{"sceneName":"MainScene","physicsPropertiesVO":{}},{"sceneName":"  vcb","physicsPropertiesVO":{}}]}
+{"originalResolution":{"name":"orig","width":1920,"height":1080},"resolutions":[{"name":"800x480","width":800,"height":480}],"scenes":[{"sceneName":"MainScene","physicsPropertiesVO":{}}]}

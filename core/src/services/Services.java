@@ -28,7 +28,7 @@ public class Services
     /**
      * Init services
      */
-    public static void initAssetService(TextureInterface service)
+    public static void initTextureService(TextureInterface service)
     {
         textureService = service;
     }
@@ -43,7 +43,7 @@ public class Services
         return mainGame;
     }
 
-    public static TextureInterface getAssetService()
+    public static TextureInterface getTextureService()
     {
         if (textureService == null)
             return nullTextureService;
