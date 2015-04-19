@@ -23,6 +23,7 @@ public abstract class AbstractScreen implements Screen
     protected Stage stage;
     protected float timer;
     protected float timeDuration;
+    protected CustomResourceManager overlapResourceManager;
 
     /**
      * Constructor method

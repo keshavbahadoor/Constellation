@@ -9,14 +9,14 @@ import com.constellation.game.MainGame;
 import com.google.android.gms.games.Games;
 import com.google.example.games.basegameutils.GameHelper;
 
-import services.GoogleServices;
+import services.GoogleGameServices;
 
 /**
  * Main Android Activity
  *
  * TODO : create separate implementation for gamehelperlistener
  */
-public class MainActivity extends AndroidApplication implements GameHelper.GameHelperListener, GoogleServices
+public class MainActivity extends AndroidApplication implements GameHelper.GameHelperListener, GoogleGameServices
 {
     private GameHelper gameHelper;
 
@@ -25,7 +25,7 @@ public class MainActivity extends AndroidApplication implements GameHelper.GameH
     {
 		super.onCreate(savedInstanceState);
 		AndroidApplicationConfiguration config = new AndroidApplicationConfiguration();
-		initialize(new MainGame(), config);
+		initialize(new MainGame(this), config);
         if (gameHelper == null)
         {
             this.gameHelper = new GameHelper(this, GameHelper.CLIENT_GAMES);

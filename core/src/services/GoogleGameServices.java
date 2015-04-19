@@ -3,7 +3,7 @@ package services;
 /**
  * Created by Keshav on 3/22/2015.
  */
-public interface GoogleServices
+public interface GoogleGameServices
 {
     public boolean getSignedInGPGS();
     public void loginGPGS();

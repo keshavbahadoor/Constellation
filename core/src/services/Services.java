@@ -16,6 +16,7 @@ public class Services
     private static Game mainGame;
     private static TextureInterface textureService;
     private static TextureInterface nullTextureService;
+    private static GoogleGameServices googleServices;
 
     /**
      * init any services including null object services
@@ -38,6 +39,8 @@ public class Services
         mainGame = game;
     }
 
+    public static void initGooglePlayGameServices(GoogleGameServices service) { googleServices = service; }
+
     public static Game getGameObject()
     {
         return mainGame;
@@ -49,4 +52,5 @@ public class Services
             return nullTextureService;
         return textureService;
     }
+    public static GoogleGameServices getGPGS(){ return googleServices; }
 }

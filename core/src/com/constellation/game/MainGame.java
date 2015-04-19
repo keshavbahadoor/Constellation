@@ -1,12 +1,9 @@
 package com.constellation.game;
 
 import com.badlogic.gdx.Game;
-import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.utils.viewport.FillViewport;
-import com.badlogic.gdx.utils.viewport.Viewport;
 
-import screens.GameScreen;
-import screens.IntroScreen;
+import screens.*;
+import services.GoogleGameServices;
 import services.Services;
 import services.asset.TextureService;
 
@@ -15,16 +12,32 @@ import services.asset.TextureService;
  */
 public class MainGame extends Game
 {
+    /**
+     * Google services interface
+     */
+    private GoogleGameServices googleServices;
+
+
+    /**
+     * Constructor
+     * - pass platform specific code here
+     */
+    public MainGame(GoogleGameServices googleServices)
+    {
+        this.googleServices = googleServices;
+    }
+
     @Override
     public void create ()
     {
         // Initialize services
         Services.initGameObject(this);
         Services.initTextureService(new TextureService());
+        Services.initGooglePlayGameServices(this.googleServices);
 
         // Start first screen
         //this.setScreen(new IntroScreen(this));
-        this.setScreen(new GameScreen(this));
+        this.setScreen(new MenuScreen(this));
     }
 
 }

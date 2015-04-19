@@ -3,6 +3,7 @@ package screens;
 import com.badlogic.gdx.Game;
 import com.uwsoft.editor.renderer.resources.ResourceManager;
 
+import services.Services;
 import stages.MainStage;
 import system.AbstractScreen;
 import system.CustomResourceManager;
@@ -12,16 +13,17 @@ import system.CustomResourceManager;
  */
 public class GameScreen extends AbstractScreen
 {
-    private CustomResourceManager rm;
 
     public GameScreen(Game game)
     {
         super(game);
 
-        rm = new CustomResourceManager();
-        rm.initCustomResources();
+        overlapResourceManager = new CustomResourceManager();
+        overlapResourceManager.initCustomResources();
 
-        this.stage = new MainStage(rm);
+        Services.getGPGS().getLeaderboardGPGS();
+
+        this.stage = new MainStage(overlapResourceManager);
     }
 
     @Override
