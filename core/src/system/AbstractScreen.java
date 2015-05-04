@@ -6,6 +6,8 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.List;
+import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.constellation.game.MainGame;
 
@@ -21,6 +23,7 @@ public abstract class AbstractScreen implements Screen
     protected SpriteBatch spriteBatch;
     protected Game game;
     protected Stage stage;
+    protected Array <Stage> stageCollection;
     protected float timer;
     protected float timeDuration;
     protected CustomResourceManager overlapResourceManager;
@@ -34,6 +37,8 @@ public abstract class AbstractScreen implements Screen
         this.game = game;
         this.spriteBatch = new SpriteBatch();
         this.stage = new Stage(new StretchViewport(800, 480));
+        this.stageCollection = new Array ();
+
         this.timer = 0.0F;
         this.timeDuration = 1.0F;
 
@@ -75,6 +80,12 @@ public abstract class AbstractScreen implements Screen
         {
             stage.act(delta);
             stage.draw();
+        }
+
+        for (int i=0; i<stageCollection.size; i++)
+        {
+            stageCollection.get(i).act(delta);
+            stageCollection.get(i).draw();
         }
     }
 
@@ -145,6 +156,11 @@ public abstract class AbstractScreen implements Screen
     public void resume() {
         // TODO Auto-generated method stub
 
+    }
+
+    public void addStageComponent(Stage s)
+    {
+        this.stageCollection.add(s);
     }
 
 }

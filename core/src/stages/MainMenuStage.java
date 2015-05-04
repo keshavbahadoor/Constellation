@@ -38,7 +38,7 @@ public class MainMenuStage extends Overlap2DStage
 
                 // Do stuff here
                 Gdx.app.log("button", "start clicked");
-                //Services.getGameObject().setScreen(new GameScreen(Services.getGameObject()));
+                Services.getGameObject().setScreen(new GameScreen(Services.getGameObject()));
 
 
             }

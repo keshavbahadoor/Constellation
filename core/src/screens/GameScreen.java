@@ -1,10 +1,10 @@
 package screens;
 
 import com.badlogic.gdx.Game;
-import com.uwsoft.editor.renderer.resources.ResourceManager;
 
 import services.Services;
-import stages.MainStage;
+import stages.GameStageUI;
+import stages.GameStage;
 import system.AbstractScreen;
 import system.CustomResourceManager;
 
@@ -23,7 +23,8 @@ public class GameScreen extends AbstractScreen
 
         Services.getGPGS().getLeaderboardGPGS();
 
-        this.stage = new MainStage(overlapResourceManager);
+        this.addStageComponent(new GameStage(overlapResourceManager));
+        this.addStageComponent(new GameStageUI(overlapResourceManager));
     }
 
     @Override

@@ -13,9 +13,9 @@ import system.CustomResourceManager;
 /**
  * Created by Keshav on 3/23/2015.
  */
-public class MainStage extends Overlap2DStage
+public class GameStage extends Overlap2DStage
 {
-    public MainStage(CustomResourceManager rm)
+    public GameStage(CustomResourceManager rm)
     {
         super(new StretchViewport(rm.stageWidth, rm.currentResolution.height));
 
