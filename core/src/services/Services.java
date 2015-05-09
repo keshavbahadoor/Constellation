@@ -1,8 +1,10 @@
 package services;
 
 import com.badlogic.gdx.Game;
+import com.uwsoft.editor.renderer.resources.ResourceManager;
 
 import services.asset.NullTextureService;
+import services.resource.CustomResourceManager;
 import system.TextureInterface;
 
 /**
@@ -17,6 +19,7 @@ public class Services
     private static TextureInterface textureService;
     private static TextureInterface nullTextureService;
     private static GoogleGameServices googleServices;
+    private static CustomResourceManager resourceManager;
 
     /**
      * init any services including null object services
@@ -41,6 +44,8 @@ public class Services
 
     public static void initGooglePlayGameServices(GoogleGameServices service) { googleServices = service; }
 
+    public static void initResourceManager(CustomResourceManager service) { resourceManager = service; }
+
     public static Game getGameObject()
     {
         return mainGame;
@@ -53,4 +58,6 @@ public class Services
         return textureService;
     }
     public static GoogleGameServices getGPGS(){ return googleServices; }
+
+    public static CustomResourceManager getResourceManager() { return resourceManager; }
 }

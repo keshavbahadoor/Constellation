@@ -6,6 +6,7 @@ import screens.*;
 import services.GoogleGameServices;
 import services.Services;
 import services.asset.TextureService;
+import services.resource.CustomResourceManager;
 
 /**
  * This is the entry point of the game
@@ -34,6 +35,8 @@ public class MainGame extends Game
         Services.initGameObject(this);
         Services.initTextureService(new TextureService());
         Services.initGooglePlayGameServices(this.googleServices);
+        Services.initResourceManager(new CustomResourceManager());
+        Services.getResourceManager().initCustomResources();
 
         // Start first screen
         //this.setScreen(new IntroScreen(this));

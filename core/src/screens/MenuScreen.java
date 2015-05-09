@@ -2,9 +2,11 @@ package screens;
 
 import com.badlogic.gdx.Game;
 
+import services.Services;
+import stages.MainMenuBackgroundStage;
 import stages.MainMenuStage;
 import system.AbstractScreen;
-import system.CustomResourceManager;
+import services.resource.CustomResourceManager;
 
 /**
  * Created by Keshav on 3/28/2015.
@@ -20,12 +22,10 @@ public class MenuScreen extends AbstractScreen
     {
         super(game);
 
-        // TODO : refactor into services
-        overlapResourceManager = new CustomResourceManager();
-        overlapResourceManager.initCustomResources();
+        this.overlapResourceManager = Services.getResourceManager();
 
-
-        this.stage = new MainMenuStage(overlapResourceManager);
+        this.addStageComponent(new MainMenuBackgroundStage(overlapResourceManager));
+        this.addStageComponent( new MainMenuStage(overlapResourceManager));
     }
 
     @Override

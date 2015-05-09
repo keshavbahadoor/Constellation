@@ -1,14 +1,10 @@
 package stages;
 
-import com.badlogic.gdx.utils.viewport.ScalingViewport;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.uwsoft.editor.renderer.Overlap2DStage;
-import com.uwsoft.editor.renderer.SceneLoader;
 
 import scripts.ParallaxBackgroundScript;
-import scripts.SceneScript;
-import scripts.Windmill;
-import system.CustomResourceManager;
+import services.resource.CustomResourceManager;
 
 /**
  * Created by Keshav on 3/23/2015.

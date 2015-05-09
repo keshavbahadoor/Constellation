@@ -1,30 +1,33 @@
 package screens;
 
 import com.badlogic.gdx.Game;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 import services.Services;
 import stages.GameStageUI;
 import stages.GameStage;
 import system.AbstractScreen;
-import system.CustomResourceManager;
+import services.resource.CustomResourceManager;
 
 /**
  * Created by Keshav on 3/28/2015.
  */
 public class GameScreen extends AbstractScreen
 {
+    TextureRegion region;
 
     public GameScreen(Game game)
     {
         super(game);
 
-        overlapResourceManager = new CustomResourceManager();
-        overlapResourceManager.initCustomResources();
+        this.overlapResourceManager = Services.getResourceManager();
 
         Services.getGPGS().getLeaderboardGPGS();
 
         this.addStageComponent(new GameStage(overlapResourceManager));
         this.addStageComponent(new GameStageUI(overlapResourceManager));
+
+        region = Services.getResourceManager().getTextureRegion("barrel (2)");
     }
 
     @Override
@@ -33,12 +36,16 @@ public class GameScreen extends AbstractScreen
     }
 
     @Override
-    public void update(float delta) {
+    public void update(float delta)
+    {
 
     }
 
     @Override
-    public void draw(float delta) {
-
+    public void draw(float delta)
+    {
+        spriteBatch.begin();
+        spriteBatch.draw(region, 0, 0  );
+        spriteBatch.end();
     }
 }

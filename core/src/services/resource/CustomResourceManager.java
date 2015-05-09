@@ -1,4 +1,4 @@
-package system;
+package services.resource;
 
 import com.badlogic.gdx.Gdx;
 import com.uwsoft.editor.renderer.data.ProjectInfoVO;

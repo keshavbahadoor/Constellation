@@ -10,7 +10,7 @@ import com.uwsoft.editor.renderer.script.SimpleButtonScript;
 
 import screens.GameScreen;
 import services.Services;
-import system.CustomResourceManager;
+import services.resource.CustomResourceManager;
 
 /**
  * Created by Keshav on 4/19/2015.
@@ -32,7 +32,7 @@ public class MainMenuStage extends Overlap2DStage
 
         Gdx.input.setInputProcessor(this);
 
-        SimpleButtonScript startButton = SimpleButtonScript.selfInit(this.sceneLoader.getRoot().getCompositeById("startBtn"));
+        SimpleButtonScript startButton = SimpleButtonScript.selfInit(this.sceneLoader.getRoot().getCompositeById("goBtn"));
         startButton.addListener(new ClickListener(){
             public void clicked(InputEvent event, float x, float y){
 

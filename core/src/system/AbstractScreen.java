@@ -6,10 +6,8 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.List;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
-import com.constellation.game.MainGame;
 
 /**
  * Abstract screen implementation
@@ -26,7 +24,7 @@ public abstract class AbstractScreen implements Screen
     protected Array <Stage> stageCollection;
     protected float timer;
     protected float timeDuration;
-    protected CustomResourceManager overlapResourceManager;
+    protected services.resource.CustomResourceManager overlapResourceManager;
 
     /**
      * Constructor method
@@ -73,9 +71,6 @@ public abstract class AbstractScreen implements Screen
         //update screen
         update(delta);
 
-        //draw screen
-        draw(delta);
-
         if (stage!=null)
         {
             stage.act(delta);
@@ -87,6 +82,9 @@ public abstract class AbstractScreen implements Screen
             stageCollection.get(i).act(delta);
             stageCollection.get(i).draw();
         }
+
+        //draw screen
+        draw(delta);
     }
 
 
