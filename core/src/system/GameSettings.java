@@ -27,6 +27,7 @@ public class GameSettings
         {
             prefs.putInteger(HIGH_SCORE, 0);
         }
+        prefs.flush();
     }
 
     public static int getHighScore()
@@ -42,11 +43,12 @@ public class GameSettings
     public static void updateHighScore(int points)
     {
         Preferences prefs = Gdx.app.getPreferences(PREFS_NAME);
-        int score = prefs.getInteger(HIGH_SCORE);
-        if (points > score)
+//        int score = prefs.getInteger(HIGH_SCORE, 0);
+//        if (points > score)
         {
             prefs.putInteger(HIGH_SCORE, points);
         }
+        prefs.flush();
     }
 
     /**
@@ -62,5 +64,6 @@ public class GameSettings
     public static void updateFirstTime(boolean bool)
     {
         Gdx.app.getPreferences(PREFS_NAME).putBoolean(FIRST_PLAY, bool);
+        Gdx.app.getPreferences(PREFS_NAME).flush();
     }
 }

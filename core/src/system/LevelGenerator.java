@@ -12,6 +12,7 @@ import GameEntities.CompositeLevelSegment;
 import GameEntities.Player;
 import enumeration.GameEvent;
 import scripts.MovingSegmentScript;
+import services.Services;
 
 /**
  * Created by Laptop on 5/9/2015.
@@ -20,7 +21,7 @@ public class LevelGenerator implements IDrawable, Observer, Observerable
 {
     private final static String LIBRARY_NAME = "seg";
     private static final int MAX_SEGMENTS = 4;
-    private static final float SPAWN_TIME = 2400;
+    private static final float SPAWN_TIME = 2800;
     private long startTime;
     private long elapsedTime;
     private Random rand;
@@ -87,9 +88,22 @@ public class LevelGenerator implements IDrawable, Observer, Observerable
                 }//end if
             }
 
-
             for (int i = 0; i < currentLevelSegments.size; i++) {
                 currentLevelSegments.get(i).update(delta);
+
+                // Check if player has passed segment
+                if (! currentLevelSegments.get(i).hasPlayerPassed())
+                {
+                    if (Services.getPlayerPosition().x > (currentLevelSegments.get(i).getPassX() + currentLevelSegments.get(i).getPassPoint().getWidth()))
+                    {
+                        currentLevelSegments.get(i).setPlayerPassed(true);
+
+                        // Notify UI
+                        notifyObservers(GameEvent.PASSED_SEGMENT);
+                    }
+                }
+
+                //Gdx.app.log("SEGMENTSSS", "PX: " + Services.getPlayerPosition().x + " SX: " + currentLevelSegments.get(i).getPassX());
             }
         }
 
@@ -148,6 +162,7 @@ public class LevelGenerator implements IDrawable, Observer, Observerable
             case GAME_PAUSE: this.isActive = false;
                 break;
             case GAME_RESUMED: this.isActive = true;
+                break;
         }
 
         Gdx.app.log("Received", event.name() + " from " + this.getClass().getName());

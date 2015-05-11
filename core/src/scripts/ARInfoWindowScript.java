@@ -8,6 +8,10 @@ import com.uwsoft.editor.renderer.actor.ImageItem;
 import com.uwsoft.editor.renderer.actor.LabelItem;
 import com.uwsoft.editor.renderer.script.IScript;
 
+import java.lang.invoke.SerializedLambda;
+
+import services.Services;
+
 
 /**
  * Created by Keshav on 5/16/2015.
@@ -54,6 +58,16 @@ public class ARInfoWindowScript implements IScript
         walkingBar.setWidth(currBarSize[1]);
         runningBar.setWidth(currBarSize[2]);
         vehicleBar.setWidth(currBarSize[3]);
+
+
+        if (currBarSize[0] == maxBarSize[0])
+            Services.getAchievementService().unlockRest();
+        if (currBarSize[1] == maxBarSize[1])
+            Services.getAchievementService().unlockWalk();
+        if (currBarSize[2] == maxBarSize[2])
+            Services.getAchievementService().unlockRun();;
+        if (currBarSize[3] == maxBarSize[3])
+            Services.getAchievementService().unlockVehicle();
 
     }
 

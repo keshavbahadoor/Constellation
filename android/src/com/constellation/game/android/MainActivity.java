@@ -61,8 +61,8 @@ public class MainActivity extends AndroidApplication implements GameHelper.GameH
          * life
          */
         Log.d("On Stop", "start AR Service");
-//        Intent arServiceIntent = new Intent(this, ActivityRecognitionService.class);
-//        this.startService(arServiceIntent);
+        Intent arServiceIntent = new Intent(this, ActivityRecognitionService.class);
+        this.startService(arServiceIntent);
     }
 
     @Override

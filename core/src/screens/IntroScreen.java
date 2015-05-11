@@ -34,7 +34,7 @@ public class IntroScreen extends AbstractScreen
         this.splashScreens = new Array<Image>();
 
         // Add splash screens
-        this.addSplashScreen(new Image(Services.getResourceService().getTexture("splashscreen")));
+        this.addSplashScreen(new Image(Services.getResourceService().getTexture("splash1")));
 
         // Add actor (initial splash screen) to stage
         this.stage.addActor((Image) splashScreens.get(0));
@@ -82,7 +82,7 @@ public class IntroScreen extends AbstractScreen
                             // start main menu here
                             Gdx.app.log("Intro Screen", "finished");
 
-                            Services.getGameObject().setScreen(new GameScreen(Services.getGameObject()));
+                            Services.getGameObject().setScreen(new MenuScreen(Services.getGameObject()));
                         }
                         return true;
                     }//end act

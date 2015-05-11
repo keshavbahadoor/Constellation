@@ -32,7 +32,7 @@ public class InputService implements InputProcessor
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button)
     {
-        Gdx.app.log("touchdown", "true");
+        //Gdx.app.log("touchdown", "true");
         this.x = screenX;
         this.y = screenY;
         this.isTouchDown = true;
@@ -43,7 +43,7 @@ public class InputService implements InputProcessor
     @Override
     public boolean touchUp(int screenX, int screenY, int pointer, int button)
     {
-        Gdx.app.log("touchUp", "true");
+        //Gdx.app.log("touchUp", "true");
         this.x = screenX;
         this.y = screenY;
         this.isTouchUp = true;

@@ -24,11 +24,13 @@ public class Player extends Entity  implements Observer, Observerable
 {
     private CompositeItem item;
     private float ANGULAR_DAMPING = 40f;
-    private float IMPULSE_FORCE = 800F;
+    private float IMPULSE_FORCE = 1800F;
     private float xForce = 0;
     private float yForce = 0;
     private float objX = 0;
     private float objY = 0;
+
+    private boolean jetsActive = true;
 
     private ParticleItem particleXleft, particleXright;
     private ParticleItem particleYup, particleYdown;
@@ -39,7 +41,7 @@ public class Player extends Entity  implements Observer, Observerable
      * Constructor
      * @param item
      */
-    public Player(CompositeItem item)
+    public Player(CompositeItem item )
     {
         this.item = item;
         this.observers = new Array<Observer>();
@@ -79,7 +81,7 @@ public class Player extends Entity  implements Observer, Observerable
             /**
              * Handle user input
              */
-            if (Gdx.input.isTouched()) {
+            if (Gdx.input.isTouched() && jetsActive) {
                 if (Gdx.input.getX() > objX) {
                     xForce = -IMPULSE_FORCE;
                     particleXleft.setVisible(false);
@@ -100,6 +102,9 @@ public class Player extends Entity  implements Observer, Observerable
                     particleYdown.setVisible(true);
                     particleYup.setVisible(false);
                 }
+
+                // notify observers
+                this.notifyObservers(GameEvent.JETS_ACTIVE);
 
                 // Apply force in appropriate direction
                 item.getBody().applyForceToCenter(xForce, yForce, true);
@@ -123,9 +128,11 @@ public class Player extends Entity  implements Observer, Observerable
                 notifyObservers(GameEvent.PLAYER_DIED);
                 isActive = false;
             }
-        }
 
+            // update Global player position
+            Services.updatePlayerPosition(objX, objY);
 
+        }//end is active
     }
 
     @Override
@@ -142,6 +149,10 @@ public class Player extends Entity  implements Observer, Observerable
     @Override
     public void onNotify( GameEvent event)
     {
+        if (event == GameEvent.JETS_EMPTY)
+        {
+            jetsActive = false;
+        }
         Gdx.app.log("Received", event.name() + " from " + this.getClass().getName());
     }
 

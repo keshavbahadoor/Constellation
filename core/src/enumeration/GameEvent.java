@@ -9,5 +9,8 @@ public enum GameEvent
     GAME_PAUSE,
     GAME_RESUMED,
     GAME_END,
-    PLAYER_DIED
+    PLAYER_DIED,
+    PASSED_SEGMENT,
+    JETS_ACTIVE,
+    JETS_EMPTY
 }

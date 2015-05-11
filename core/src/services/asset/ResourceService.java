@@ -35,7 +35,7 @@ public class ResourceService implements LocalResourceInterface
         try
         {
             // Load images
-            imageAssets.put("splashscreen",	 loadTexture ("splashscreen"));
+            imageAssets.put("splash1",	 loadTexture ("splash1"));
             imageAssets.put("particle",	 loadTexture ("particle"));
             imageAssets.put("pre_particle",	 loadTexture ("pre_particle"));
 

@@ -29,12 +29,23 @@ public class GameScreen extends AbstractScreen
         this.gameStage = new GameStage(overlapResourceManager);
         this.gameStageUI = new GameStageUI(overlapResourceManager);
 
-        // Register observers
+        /**
+         * Registers observers
+         */
         gameStage.addObserver(gameStageUI);
         gameStageUI.addObserver(gameStage);
+
+        // Assign observers to player
         gameStage.getPlayer().addObserver(gameStageUI);
         gameStage.getPlayer().addObserver(gameStage);
         gameStage.getPlayer().addObserver(gameStage.getLevelGenerator());
+
+        // Assign observers to level generator
+        gameStage.getLevelGenerator().addObserver(gameStageUI.getScorePanel());
+
+        // Assign observers to Jetspanel
+        gameStageUI.getJetsPanel().addObserver(gameStage.getPlayer());
+        gameStage.getPlayer().addObserver(gameStageUI.getJetsPanel());
 
 
         // Add to components

@@ -1,19 +1,20 @@
 package stages;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.uwsoft.editor.renderer.Overlap2DStage;
 import com.uwsoft.editor.renderer.actor.CompositeItem;
+import com.uwsoft.editor.renderer.actor.LabelItem;
 import com.uwsoft.editor.renderer.script.SimpleButtonScript;
 
+import GameEntities.JetsPanel;
+import GameEntities.ScorePanel;
 import enumeration.GameEvent;
 import screens.GameScreen;
 import screens.MenuScreen;
-import scripts.EnergyBarScript;
 import services.Services;
 import services.resource.CustomResourceManager;
 import system.Observer;
@@ -28,6 +29,9 @@ public class GameStageUI extends Overlap2DStage implements Observer, Observerabl
     private CompositeItem failWindow;
     private CompositeItem restartBtnUI;
     private CompositeItem homeBtnUI;
+    private ScorePanel scorePanel;
+    private LabelItem highScoreAlert;
+    private JetsPanel jetsPanel;
 
 
     public GameStageUI(CustomResourceManager rm)
@@ -42,6 +46,11 @@ public class GameStageUI extends Overlap2DStage implements Observer, Observerabl
         failWindow = sceneLoader.getRoot().getCompositeById("failwindow");
         restartBtnUI = sceneLoader.getRoot().getCompositeById("restartBtn");
         homeBtnUI = sceneLoader.getRoot().getCompositeById("homeBtn");
+        scorePanel = new ScorePanel(sceneLoader.getRoot().getCompositeById("scorepanel"));
+        jetsPanel = new JetsPanel(sceneLoader.getRoot().getCompositeById("jetui"));
+        highScoreAlert = sceneLoader.getRoot().getLabelById("highscorealert");
+
+
 
         setFailVisibility(false);
 
@@ -76,12 +85,19 @@ public class GameStageUI extends Overlap2DStage implements Observer, Observerabl
     {
         switch (event)
         {
-            case PLAYER_DIED:  setFailVisibility(true);
-                               Gdx.input.setInputProcessor(this);
+            case PLAYER_DIED:
+            {
+                setFailVisibility(true);
+                Gdx.input.setInputProcessor(this);
+                processScore();
                 break;
+            }
+
             case GAME_PAUSE:
                 break;
             case GAME_RESUMED:
+                break;
+
         }
 
         Gdx.app.log("Received", event.name() + " from " + this.getClass().getName());
@@ -107,5 +123,38 @@ public class GameStageUI extends Overlap2DStage implements Observer, Observerabl
         failWindow.setVisible(visibility);
         restartBtnUI.setVisible(visibility);
         homeBtnUI.setVisible(visibility);
+        highScoreAlert.setVisible(visibility);
+    }
+
+    public ScorePanel getScorePanel() {
+        return scorePanel;
+    }
+
+    public JetsPanel getJetsPanel() {
+        return jetsPanel;
+    }
+
+    /**
+     * Treats any score gained by the player
+     */
+    private void processScore()
+    {
+        int score = scorePanel.getScore();
+
+        if (score > Services.getGameSettings().getHighScore())
+        {
+            // tell user
+            highScoreAlert.setVisible(true);
+
+            // process any achievements
+            Services.getAchievementService().unlockLevelAchievements(score);
+
+            // update storage
+            Services.getGameSettings().updateHighScore(score);
+
+            // publish score
+            Gdx.app.log("Submitting scores", "score: " + score);
+            Services.getGPGS().submitScoreGPGS(score);
+        }
     }
 }

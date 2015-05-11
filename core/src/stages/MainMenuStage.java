@@ -61,7 +61,7 @@ public class MainMenuStage extends Overlap2DStage
 
                 // Do stuff here
                 Gdx.app.log("button", "optionsButton clicked");
-                Services.getGPGS().unlockAchievementGPGS("CgkIpJKzq7oBEAIQAQ");
+                Services.getGPGS().getAchievementsGPGS();
             }
         });
 
@@ -72,6 +72,7 @@ public class MainMenuStage extends Overlap2DStage
                 // Do stuff here
                 Gdx.app.log("button", "leaderboardButton clicked");
                 Services.getGPGS().getLeaderboardGPGS();
+
             }
         });
 

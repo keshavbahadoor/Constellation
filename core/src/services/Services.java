@@ -2,10 +2,12 @@ package services;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Vector2;
 
 import services.asset.NullResourceService;
 import services.resource.CustomResourceManager;
 import system.AchievementService;
+import system.GameSettings;
 import system.InputService;
 import system.LocalResourceInterface;
 
@@ -24,6 +26,8 @@ public class Services
     private static CustomResourceManager resourceManager;
     private static SpriteBatch spriteBatch;
     private static AchievementService achievementService;
+    private static GameSettings gameSettings;
+    private static Vector2 playerPosition = new Vector2(0, 0);
     public static InputService inputService; // TODO refactor;
 
     /**
@@ -70,6 +74,8 @@ public class Services
 
     public static AchievementService getAchievementService() { return achievementService; }
 
+    public static GameSettings getGameSettings() { return gameSettings; }
+
     public static SpriteBatch getSpriteBatch()
     {
         if (spriteBatch != null)
@@ -77,4 +83,11 @@ public class Services
         spriteBatch = new SpriteBatch();
         return spriteBatch;
     }
+
+    public static void updatePlayerPosition(float x, float y)
+    {
+        playerPosition.set(x, y);
+    }
+
+    public static Vector2 getPlayerPosition () { return playerPosition; }
 }
