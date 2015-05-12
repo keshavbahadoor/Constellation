@@ -1,6 +1,7 @@
 package services;
 
 import com.badlogic.gdx.Game;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.uwsoft.editor.renderer.resources.ResourceManager;
 
 import services.asset.NullTextureService;
@@ -20,6 +21,7 @@ public class Services
     private static TextureInterface nullTextureService;
     private static GoogleGameServices googleServices;
     private static CustomResourceManager resourceManager;
+    private static SpriteBatch spriteBatch;
 
     /**
      * init any services including null object services
@@ -46,6 +48,8 @@ public class Services
 
     public static void initResourceManager(CustomResourceManager service) { resourceManager = service; }
 
+    public static void initSpriteBatch(SpriteBatch batch) { spriteBatch = batch; }
+
     public static Game getGameObject()
     {
         return mainGame;
@@ -60,4 +64,12 @@ public class Services
     public static GoogleGameServices getGPGS(){ return googleServices; }
 
     public static CustomResourceManager getResourceManager() { return resourceManager; }
+
+    public static SpriteBatch getSpriteBatch()
+    {
+        if (spriteBatch != null)
+            return spriteBatch;
+        spriteBatch = new SpriteBatch();
+        return spriteBatch;
+    }
 }

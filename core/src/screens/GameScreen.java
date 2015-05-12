@@ -3,6 +3,7 @@ package screens;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
+import GameEntities.LevelSegment;
 import services.Services;
 import stages.GameStageUI;
 import stages.GameStage;
@@ -15,19 +16,22 @@ import services.resource.CustomResourceManager;
 public class GameScreen extends AbstractScreen
 {
     TextureRegion region;
+    LevelSegment ls ;
 
     public GameScreen(Game game)
     {
         super(game);
 
         this.overlapResourceManager = Services.getResourceManager();
+        Services.initSpriteBatch(this.spriteBatch);
 
         Services.getGPGS().getLeaderboardGPGS();
 
-        this.addStageComponent(new GameStage(overlapResourceManager));
-        this.addStageComponent(new GameStageUI(overlapResourceManager));
+//        this.addStageComponent(new GameStage(overlapResourceManager));
+//        this.addStageComponent(new GameStageUI(overlapResourceManager));
 
-        region = Services.getResourceManager().getTextureRegion("barrel (2)");
+        //region = Services.getResourceManager().getTextureRegion("barrel (2)");
+        ls = new LevelSegment("");
     }
 
     @Override
@@ -45,7 +49,8 @@ public class GameScreen extends AbstractScreen
     public void draw(float delta)
     {
         spriteBatch.begin();
-        spriteBatch.draw(region, 0, 0  );
+        //spriteBatch.draw(region, 0, 0  );
+        ls.draw(delta);
         spriteBatch.end();
     }
 }
