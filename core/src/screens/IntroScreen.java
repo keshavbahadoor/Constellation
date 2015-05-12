@@ -34,7 +34,7 @@ public class IntroScreen extends AbstractScreen
         this.splashScreens = new Array<Image>();
 
         // Add splash screens
-        this.addSplashScreen(new Image(Services.getTextureService().getTexture("splashscreen")));
+        this.addSplashScreen(new Image(Services.getResourceService().getTexture("splashscreen")));
 
         // Add actor (initial splash screen) to stage
         this.stage.addActor((Image) splashScreens.get(0));

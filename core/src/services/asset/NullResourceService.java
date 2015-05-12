@@ -1,14 +1,15 @@
 package services.asset;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.ParticleEffect;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
-import system.TextureInterface;
+import system.LocalResourceInterface;
 
 /**
  * Created by Keshav on 3/28/2015.
  */
-public class NullTextureService implements TextureInterface
+public class NullResourceService implements LocalResourceInterface
 {
     @Override
     public void load() {
@@ -47,6 +48,16 @@ public class NullTextureService implements TextureInterface
     @Override
     public Texture loadTexture(String filename) {
         // Do nothing
+        return null;
+    }
+
+    @Override
+    public ParticleEffect getParticleEffect(String key) {
+        return null;
+    }
+
+    @Override
+    public ParticleEffect loadParticleEffect(String filename) {
         return null;
     }
 }

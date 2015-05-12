@@ -126,7 +126,7 @@ coin (3)
   index: -1
 coin (4)
   rotate: false
-  xy: 2447, 1382
+  xy: 3420, 1433
   size: 50, 70
   orig: 50, 70
   offset: 0, 0
@@ -446,6 +446,13 @@ movplatform
   orig: 643, 379
   offset: 0, 0
   index: -1
+particle
+  rotate: false
+  xy: 956, 1356
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
 pounder (1)
   rotate: false
   xy: 956, 1390
@@ -497,14 +504,14 @@ sign (1)
   index: -1
 sign (10)
   rotate: false
-  xy: 3909, 3631
+  xy: 2577, 1271
   size: 93, 141
   orig: 93, 141
   offset: 0, 0
   index: -1
 sign (11)
   rotate: false
-  xy: 3909, 3774
+  xy: 2447, 906
   size: 132, 116
   orig: 132, 116
   offset: 0, 0
@@ -546,21 +553,21 @@ sign (6)
   index: -1
 sign (7)
   rotate: false
-  xy: 3782, 2996
+  xy: 2426, 421
   size: 141, 93
   orig: 141, 93
   offset: 0, 0
   index: -1
 sign (8)
   rotate: false
-  xy: 3782, 2901
+  xy: 2577, 1033
   size: 141, 93
   orig: 141, 93
   offset: 0, 0
   index: -1
 sign (9)
   rotate: false
-  xy: 3687, 2929
+  xy: 2577, 1128
   size: 93, 141
   orig: 93, 141
   offset: 0, 0
@@ -584,6 +591,202 @@ switch (2)
   xy: 3476, 3330
   size: 256, 256
   orig: 256, 256
+  offset: 0, 0
+  index: -1
+t1
+  rotate: false
+  xy: 3909, 3762
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+t10
+  rotate: false
+  xy: 3909, 3632
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+t11
+  rotate: false
+  xy: 2447, 1284
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+t12
+  rotate: false
+  xy: 2447, 1154
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+t13
+  rotate: false
+  xy: 2447, 1024
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+t14
+  rotate: false
+  xy: 2672, 1287
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+t15
+  rotate: false
+  xy: 2802, 1287
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+t16
+  rotate: false
+  xy: 2932, 1287
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+t17
+  rotate: false
+  xy: 2672, 1157
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+t18
+  rotate: false
+  xy: 2802, 1157
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+t19
+  rotate: false
+  xy: 2932, 1157
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+t2
+  rotate: false
+  xy: 2426, 776
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+t20
+  rotate: false
+  xy: 2426, 646
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+t21
+  rotate: false
+  xy: 2426, 516
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+t22
+  rotate: false
+  xy: 3062, 1287
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+t23
+  rotate: false
+  xy: 3062, 1157
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+t24
+  rotate: false
+  xy: 3192, 1288
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+t25
+  rotate: false
+  xy: 3192, 1158
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+t26
+  rotate: false
+  xy: 3322, 1288
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+t27
+  rotate: false
+  xy: 3322, 1158
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+t28
+  rotate: false
+  xy: 2581, 903
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+t3
+  rotate: false
+  xy: 2556, 773
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+t4
+  rotate: false
+  xy: 2556, 643
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+t5
+  rotate: false
+  xy: 2720, 1027
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+t6
+  rotate: false
+  xy: 2850, 1027
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+t7
+  rotate: false
+  xy: 2980, 1027
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+t8
+  rotate: false
+  xy: 2711, 897
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+t9
+  rotate: false
+  xy: 2841, 897
+  size: 128, 128
+  orig: 128, 128
   offset: 0, 0
   index: -1
 tile (1)

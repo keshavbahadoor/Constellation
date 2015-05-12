@@ -1,7 +1,10 @@
 package stages;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.uwsoft.editor.renderer.Overlap2DStage;
+import com.uwsoft.editor.renderer.actor.CompositeItem;
 
 import scripts.EnergyBarScript;
 import services.resource.CustomResourceManager;
@@ -21,8 +24,18 @@ public class GameStageUI extends Overlap2DStage
 
         this.sceneLoader.loadScene("GameScreenUI");
 
-        this.addActor(sceneLoader.getRoot());
+        CompositeItem root = sceneLoader.getRoot();
 
-        this.sceneLoader.getRoot().getCompositeById("healthbar").addScript(new EnergyBarScript());
+        Actor a = root.getCompositeById("healthbar");
+        a.setY(a.getY() - 20);
+        a.setName(a.getName() + "1");
+
+
+        this.addActor(root);
+
+
+        Gdx.app.log("debug", "Actors: " + root.getChildren().size);
+
+        ///this.sceneLoader.getRoot().getCompositeById("healthbar").addScript(new EnergyBarScript());
     }
 }
