@@ -98,7 +98,7 @@ btn-go
   index: -1
 character-2
   rotate: false
-  xy: 1606, 774
+  xy: 829, 342
   size: 22, 33
   orig: 22, 33
   offset: 0, 0
@@ -112,7 +112,7 @@ coin (1)
   index: -1
 coin (2)
   rotate: false
-  xy: 829, 346
+  xy: 1616, 517
   size: 21, 29
   orig: 21, 29
   offset: 0, 0
@@ -126,7 +126,7 @@ coin (3)
   index: -1
 coin (4)
   rotate: false
-  xy: 1616, 517
+  xy: 1173, 478
   size: 21, 29
   orig: 21, 29
   offset: 0, 0
@@ -154,7 +154,7 @@ crate (3)
   index: -1
 diamond
   rotate: false
-  xy: 1391, 737
+  xy: 1606, 780
   size: 31, 27
   orig: 31, 27
   offset: 0, 0
@@ -444,6 +444,13 @@ movplatform
   xy: 2466, 864
   size: 268, 158
   orig: 268, 158
+  offset: 0, 0
+  index: -1
+particle
+  rotate: false
+  xy: 1391, 732
+  size: 32, 32
+  orig: 32, 32
   offset: 0, 0
   index: -1
 pounder (1)

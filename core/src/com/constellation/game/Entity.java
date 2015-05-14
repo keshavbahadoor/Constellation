@@ -11,6 +11,9 @@ import system.IDrawable;
 public class Entity implements IDrawable
 {
     public Vector2 position;
+    protected boolean isDisposable = false;
+    protected boolean isActive = true;
+    protected boolean isMoving = true;
 
     public Entity()
     {
@@ -30,5 +33,29 @@ public class Entity implements IDrawable
     @Override
     public void update(float delta) {
 
+    }
+
+    public boolean isActive() {
+        return isActive;
+    }
+
+    public void setIsActive(boolean isActive) {
+        this.isActive = isActive;
+    }
+
+    public boolean isMoving() {
+        return isMoving;
+    }
+
+    public void setIsMoving(boolean isMoving) {
+        this.isMoving = isMoving;
+    }
+
+    public Vector2 getPosition() {
+        return position;
+    }
+
+    public void setPosition(Vector2 position) {
+        this.position = position;
     }
 }

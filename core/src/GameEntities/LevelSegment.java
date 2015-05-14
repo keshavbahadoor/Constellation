@@ -42,40 +42,43 @@ public class LevelSegment extends Entity
 
     }
 
-
+    /**
+     * Builds the data arrays from json input
+     */
     private void buildData()
     {
         JsonValue data = new JsonReader().parse(testdata);
         int arr[] = data.asIntArray();
 
-        int row = 0;
+        int row = tileHeight-1;
         int col = 0;
 
         for (int i=0; i<data.size; i++)
         {
-             if (arr[i] != 0 )
-             {
-                 textures.add(Services.getResourceManager().getTextureRegion("t" + arr[i]));
-                 positions.add(new Vector2(col*texSize, row*texSize));
-                 Gdx.app.log("sizes", "textsize: " + texSize + " row: " + row + " col: " + col + " X: " + col*texSize + " Y: " + row*texSize);
-             }
+            if (arr[i] != 0 )
+            {
+                textures.add(Services.getResourceManager().getTextureRegion("t" + arr[i]));
+                positions.add(new Vector2(col*texSize, row*texSize));
+                //Gdx.app.log("sizes", "textsize: " + texSize + " row: " + row + " col: " + col + " X: " + col*texSize + " Y: " + row*texSize);
+            }
 
             col++;
 
-            if (col > tileWidth)
+            if (col == tileWidth)
             {
                 col = 0;
-                row++;
+                row--;
             }
-
-
         }
     }
 
     @Override
     public void update(float delta)
     {
-        super.update(delta);
+        for (i=0; i<positions.size; i++)
+        {
+            positions.get(i).x += 100 * delta;
+        }
     }
 
     /**
@@ -90,5 +93,30 @@ public class LevelSegment extends Entity
         {
             Services.getSpriteBatch().draw(textures.get(i), positions.get(i).x, positions.get(i).y);
         }
+    }
+
+    /**
+     * sets the x position
+     * @param x
+     */
+    public void setX(float x)
+    {
+        float diff = positions.get(0).x + x;
+
+
+        for (int j=0; j<positions.size; j++)
+        {
+            positions.get(j).x += diff;
+        }
+    }
+
+    public float getX()
+    {
+        return positions.get(0).x;
+    }
+
+    public Vector2 getPosition()
+    {
+        return positions.get(0);
     }
 }

@@ -27,5 +27,8 @@ public class GameStage extends Overlap2DStage
         this.sceneLoader.getRoot().getCompositeById("wall").addScript(new ParallaxBackgroundScript("wall1", "wall2", 200));
         this.sceneLoader.getRoot().getCompositeById("floor").addScript(new ParallaxBackgroundScript("floor1", "floor2", 800));
 
+
+
+
     }
 }

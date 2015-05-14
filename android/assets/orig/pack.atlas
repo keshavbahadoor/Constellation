@@ -446,6 +446,13 @@ movplatform
   orig: 643, 379
   offset: 0, 0
   index: -1
+particle
+  rotate: false
+  xy: 956, 1356
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
 pounder (1)
   rotate: false
   xy: 956, 1390

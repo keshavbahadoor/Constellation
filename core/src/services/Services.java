@@ -2,11 +2,11 @@ package services;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.uwsoft.editor.renderer.resources.ResourceManager;
 
-import services.asset.NullTextureService;
+import services.asset.NullResourceService;
 import services.resource.CustomResourceManager;
-import system.TextureInterface;
+import system.InputService;
+import system.LocalResourceInterface;
 
 /**
  * - uses service locator design pattern
@@ -17,24 +17,25 @@ import system.TextureInterface;
 public class Services
 {
     private static Game mainGame;
-    private static TextureInterface textureService;
-    private static TextureInterface nullTextureService;
+    private static LocalResourceInterface textureService;
+    private static LocalResourceInterface nullTextureService;
     private static GoogleGameServices googleServices;
     private static CustomResourceManager resourceManager;
     private static SpriteBatch spriteBatch;
+    public static InputService inputService; // TODO refactor;
 
     /**
      * init any services including null object services
      */
     public static void initialize()
     {
-        nullTextureService = new NullTextureService();
+        nullTextureService = new NullResourceService();
     }
 
     /**
      * Init services
      */
-    public static void initTextureService(TextureInterface service)
+    public static void initTextureService(LocalResourceInterface service)
     {
         textureService = service;
     }
@@ -55,7 +56,7 @@ public class Services
         return mainGame;
     }
 
-    public static TextureInterface getTextureService()
+    public static LocalResourceInterface getResourceService()
     {
         if (textureService == null)
             return nullTextureService;
