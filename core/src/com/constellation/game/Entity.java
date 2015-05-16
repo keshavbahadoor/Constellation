@@ -11,6 +11,7 @@ import system.IDrawable;
 public class Entity implements IDrawable
 {
     public Vector2 position;
+    protected String name = "default";
     protected boolean isDisposable = false;
     protected boolean isActive = true;
     protected boolean isMoving = true;
@@ -57,5 +58,13 @@ public class Entity implements IDrawable
 
     public void setPosition(Vector2 position) {
         this.position = position;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

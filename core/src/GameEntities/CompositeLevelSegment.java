@@ -1,18 +1,31 @@
 package GameEntities;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.constellation.game.Entity;
 import com.uwsoft.editor.renderer.actor.CompositeItem;
 import com.uwsoft.editor.renderer.physics.PhysicsBodyLoader;
 
+import services.Services;
+
 /**
- * Created by Laptop on 5/9/2015.
+ *  wrapper class for Component Actor
  */
 public class CompositeLevelSegment extends Entity
 {
     private CompositeItem segment;
+
+    /**
+     * Each segment contains a top and bottom
+     * composite item
+     */
+    private CompositeItem top;
+    private CompositeItem bot;
+
     private float moveSpeed = 400F;
     private static final float xDiffOffset = 50F;
+
+
 
     /**
      * positive: right
@@ -27,6 +40,19 @@ public class CompositeLevelSegment extends Entity
     public CompositeLevelSegment(CompositeItem segment)
     {
         this.segment = segment;
+        this.top = segment.getCompositeById("top");
+        this.bot = segment.getCompositeById("bot");
+    }
+
+    /**
+     * Constructor accepting name
+     * @param segment
+     * @param name
+     */
+    public CompositeLevelSegment(CompositeItem segment, String name)
+    {
+        this(segment);
+        this.name = name;
     }
 
 
@@ -34,6 +60,7 @@ public class CompositeLevelSegment extends Entity
     public void draw(float delta)
     {
         super.draw(delta);
+        //segment.draw(Services.getSpriteBatch(), 1F);
     }
 
     @Override
@@ -44,11 +71,11 @@ public class CompositeLevelSegment extends Entity
         if (isMoving)
         {
             // update composite X coordinate
-            segment.setX(segment.getBody().getPosition().x / PhysicsBodyLoader.SCALE);
+            segment.setX(segment.getX() + this.direction * delta * this.moveSpeed);
 
-            // move physics body
-            setBodyX((this.segment.getBody().getPosition().x / PhysicsBodyLoader.SCALE) + this.direction * delta * this.moveSpeed);
-
+            // move physics bodies
+            setBodyX(this.top, (this.top.getBody().getPosition().x / PhysicsBodyLoader.SCALE) + this.direction * delta * this.moveSpeed);
+            setBodyX(this.bot, (this.bot.getBody().getPosition().x / PhysicsBodyLoader.SCALE) + this.direction * delta * this.moveSpeed);
         }
 
         // add to object pool
@@ -56,6 +83,8 @@ public class CompositeLevelSegment extends Entity
         {
             stopMovement();
         }
+
+
     }
 
     /**
@@ -74,17 +103,54 @@ public class CompositeLevelSegment extends Entity
      */
     public void resetSegment()
     {
-        this.setBodyX(Gdx.graphics.getWidth() + xDiffOffset);
+        this.segment.setX(Gdx.graphics.getWidth() + xDiffOffset);
+
+        // reset bottom
+        this.setBodyX(this.top, Gdx.graphics.getWidth() + xDiffOffset);
+
+        // reset top
+        this.setBodyX(this.bot, Gdx.graphics.getWidth() + xDiffOffset);
+
         this.segment.setVisible(true);
         this.isMoving = true;
         this.isActive = true;
     }
 
-    private void setBodyX(float x)
+    private void setBodyX(CompositeItem i, float x)
     {
-
-        segment.getBody().setTransform(x * PhysicsBodyLoader.SCALE,
-                                       segment.getBody().getPosition().y,
-                                       segment.getBody().getAngle());
+        try {
+            i.getBody().setTransform(x * PhysicsBodyLoader.SCALE,
+                    i.getBody().getPosition().y,
+                    i.getBody().getAngle());
+        }
+        catch (Exception e)
+        {
+            Gdx.app.log("ERROR", "Error : " + e.getMessage());
+        }
     }
+
+    /**
+     * returns the x value plus the width
+     * @return
+     */
+    public float getFarX()
+    {
+        return segment.getX() + segment.getWidth();
+    }
+
+    public float getWidth()
+    {
+        return segment.getWidth();
+    }
+
+    public Actor getActor()
+    {
+        return this.segment;
+    }
+
+    public void setVisible(boolean visibility)
+    {
+        this.segment.setVisible(visibility);
+    }
+
 }

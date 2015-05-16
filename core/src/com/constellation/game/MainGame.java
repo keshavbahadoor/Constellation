@@ -40,8 +40,8 @@ public class MainGame extends Game
 
         // Start first screen
         //this.setScreen(new IntroScreen(this));
-        //this.setScreen(new MenuScreen(this));
-        this.setScreen(new GameScreen(this));
+        this.setScreen(new MenuScreen(this));
+        //this.setScreen(new GameScreen(this));
     }
 
 }

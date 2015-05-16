@@ -5,9 +5,9 @@ package enumeration;
  */
 public enum GameEvent
 {
-    /**
-     * just some examples now .. will add more as i need them
-     */
-    PLAYER_DIED,
-    STAGE_CLEARED
+    GAME_START,
+    GAME_PAUSE,
+    GAME_RESUMED,
+    GAME_END,
+    PLAYER_DIED
 }

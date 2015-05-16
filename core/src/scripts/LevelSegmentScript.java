@@ -6,13 +6,16 @@ import com.uwsoft.editor.renderer.physics.PhysicsBodyLoader;
 import com.uwsoft.editor.renderer.script.IScript;
 
 /**
- * Created by Laptop on 5/9/2015.
+ * Implementation changed. Level Segment Script has been deprecated due to
+ * new level segments having multiple composite components, with multiple
+ * physics bodies.
  */
+@Deprecated
 public class LevelSegmentScript implements IScript
 {
     private boolean isMoving = true;
     private CompositeItem item;
-    private float moveSpeed = 500F;
+    private float moveSpeed = Gdx.graphics.getWidth();
     private static final float xDiffOffset = 50F;
 
     /**

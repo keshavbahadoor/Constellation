@@ -9,5 +9,5 @@ import enumeration.GameEvent;
  */
 public interface Observer
 {
-    public void onNotify(Entity entity, GameEvent event);
+    public void onNotify(  GameEvent event);
 }

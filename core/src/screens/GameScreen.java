@@ -5,55 +5,55 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 import GameEntities.LevelSegment;
 import services.Services;
-import stages.GameStageUI;
 import stages.GameStage;
-import stages.TestStage;
+import stages.GameStageUI;
 import system.AbstractScreen;
-import services.resource.CustomResourceManager;
 
 /**
  * Created by Keshav on 3/28/2015.
  */
 public class GameScreen extends AbstractScreen
 {
-    TextureRegion region;
-    LevelSegment ls ;
+    private GameStage gameStage;
+    private GameStageUI gameStageUI;
 
     public GameScreen(Game game)
     {
         super(game);
 
+        // Create resource manager and services
         this.overlapResourceManager = Services.getResourceManager();
         Services.initSpriteBatch(this.spriteBatch);
+        // TODO : move to button Services.getGPGS().getLeaderboardGPGS();
 
-        Services.getGPGS().getLeaderboardGPGS();
+        this.gameStage = new GameStage(overlapResourceManager);
+        this.gameStageUI = new GameStageUI(overlapResourceManager);
 
-//        this.addStageComponent(new GameStage(overlapResourceManager));
-//        this.addStageComponent(new GameStageUI(overlapResourceManager));
-        this.addStageComponent(new TestStage(overlapResourceManager));
+        // Register observers
+        gameStage.addObserver(gameStageUI);
+        gameStageUI.addObserver(gameStage);
+        gameStage.getPlayer().addObserver(gameStageUI);
+        gameStage.getPlayer().addObserver(gameStage);
+        gameStage.getPlayer().addObserver(gameStage.getLevelGenerator());
 
-        //region = Services.getResourceManager().getTextureRegion("barrel (2)");
-//        ls = new LevelSegment("");
+
+        // Add to components
+        this.addStageComponent(gameStage);
+        this.addStageComponent(gameStageUI);
     }
 
     @Override
-    public void loadContent() {
+    public void loadContent()
+    {
 
     }
 
     @Override
     public void update(float delta) {
-        //ls.setX(ls.getX() + 1 * delta);
-
-//        ls.update(delta);
     }
 
     @Override
     public void draw(float delta)
     {
-        spriteBatch.begin();
-        //spriteBatch.draw(region, 0, 0  );
-//        ls.draw(delta);
-        spriteBatch.end();
     }
 }
