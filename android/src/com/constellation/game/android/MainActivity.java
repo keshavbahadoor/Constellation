@@ -2,6 +2,7 @@ package com.constellation.game.android;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 
 import com.badlogic.gdx.backends.android.AndroidApplication;
 import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration;
@@ -9,6 +10,7 @@ import com.constellation.game.MainGame;
 import com.google.android.gms.games.Games;
 import com.google.example.games.basegameutils.GameHelper;
 
+import assignment1.keshav.com.activityrecognitionserviceandroid.ActivityRecognitionService;
 import services.GoogleGameServices;
 
 /**
@@ -46,6 +48,15 @@ public class MainActivity extends AndroidApplication implements GameHelper.GameH
     {
         super.onStop();
         this.gameHelper.onStop();
+
+        /**
+         * This is where we will start Google Activity Recognition service
+         * to continue running in the background as the user goes about
+         * life
+         */
+        Log.d("On Stop", "start AR Service");
+        Intent arServiceIntent = new Intent(this, ActivityRecognitionService.class);
+        this.startService(arServiceIntent);
     }
 
     @Override
@@ -127,4 +138,6 @@ public class MainActivity extends AndroidApplication implements GameHelper.GameH
             this.loginGPGS();
         }
     }
+
+
 }

@@ -1,1 +1,2 @@
+include ':activityrecognitionserviceandroid'
 include 'desktop', 'android', 'ios', 'html', 'core', 'BaseGameUtils'
