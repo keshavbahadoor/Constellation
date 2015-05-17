@@ -18,8 +18,9 @@ import scripts.MovingSegmentScript;
  */
 public class LevelGenerator implements IDrawable, Observer, Observerable
 {
+    private final static String LIBRARY_NAME = "seg";
     private static final int MAX_SEGMENTS = 4;
-    private static final float SPAWN_TIME = 1800;
+    private static final float SPAWN_TIME = 2400;
     private long startTime;
     private long elapsedTime;
     private Random rand;
@@ -31,7 +32,7 @@ public class LevelGenerator implements IDrawable, Observer, Observerable
      * The last segment is stored so that we spawn a segment different to the last one.
      * This makes the game more interesting for the user
      */
-    private String lastSegmentName = "seg1";
+    private String lastSegmentName = LIBRARY_NAME + "1";
 
     // local object pool
     private CompositeItemObjectPool itemObjectPool;
@@ -121,10 +122,10 @@ public class LevelGenerator implements IDrawable, Observer, Observerable
      */
     private String getNextSegmentName()
     {
-        String name = "seg" + (rand.nextInt(MAX_SEGMENTS)+1);
+        String name = LIBRARY_NAME + (rand.nextInt(MAX_SEGMENTS)+1);
         while (name.equals(lastSegmentName))
         {
-            name = "seg" + (rand.nextInt(MAX_SEGMENTS)+1);
+            name = LIBRARY_NAME + (rand.nextInt(MAX_SEGMENTS)+1);
         }
         lastSegmentName = name;
         return name;

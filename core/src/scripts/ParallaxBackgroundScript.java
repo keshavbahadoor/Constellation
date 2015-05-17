@@ -17,8 +17,9 @@ public class ParallaxBackgroundScript implements IScript
     private String bg2Name;
     private float speed;
 
-    public ParallaxBackgroundScript(String bg1, String bg2, float speed)
+    public ParallaxBackgroundScript( String bg1, String bg2, float speed)
     {
+
         this.bg1Name = bg1;
         this.bg2Name = bg2;
         this.speed = speed;
@@ -30,6 +31,7 @@ public class ParallaxBackgroundScript implements IScript
         this.item = item;
         this.bg1 = item.getImageById(bg1Name);
         this.bg2 = item.getImageById(bg2Name);
+        this.speed = speed * item.mulX;
     }
 
     @Override
@@ -41,8 +43,8 @@ public class ParallaxBackgroundScript implements IScript
     @Override
     public void act(float delta)
     {
-        bg1.setX(bg1.getX() - speed * delta);
-        bg2.setX(bg2.getX() - speed * delta);
+        bg1.setX((bg1.getX() - speed * delta));
+        bg2.setX((bg2.getX() - speed * delta));
 
 
         resolveBackground(bg1);

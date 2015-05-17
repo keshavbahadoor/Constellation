@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import services.asset.NullResourceService;
 import services.resource.CustomResourceManager;
+import system.AchievementService;
 import system.InputService;
 import system.LocalResourceInterface;
 
@@ -22,6 +23,7 @@ public class Services
     private static GoogleGameServices googleServices;
     private static CustomResourceManager resourceManager;
     private static SpriteBatch spriteBatch;
+    private static AchievementService achievementService;
     public static InputService inputService; // TODO refactor;
 
     /**
@@ -65,6 +67,8 @@ public class Services
     public static GoogleGameServices getGPGS(){ return googleServices; }
 
     public static CustomResourceManager getResourceManager() { return resourceManager; }
+
+    public static AchievementService getAchievementService() { return achievementService; }
 
     public static SpriteBatch getSpriteBatch()
     {

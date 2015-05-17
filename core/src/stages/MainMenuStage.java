@@ -5,9 +5,12 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.uwsoft.editor.renderer.Overlap2DStage;
+import com.uwsoft.editor.renderer.actor.CompositeItem;
+import com.uwsoft.editor.renderer.actor.LabelItem;
 import com.uwsoft.editor.renderer.script.SimpleButtonScript;
 
 
+import screens.ARInfoScreen;
 import screens.GameScreen;
 import services.Services;
 import services.resource.CustomResourceManager;
@@ -33,16 +36,47 @@ public class MainMenuStage extends Overlap2DStage
         Gdx.input.setInputProcessor(this);
 
         SimpleButtonScript startButton = SimpleButtonScript.selfInit(this.sceneLoader.getRoot().getCompositeById("goBtn"));
-        startButton.addListener(new ClickListener(){
-            public void clicked(InputEvent event, float x, float y){
+        startButton.addListener(new ClickListener() {
+            public void clicked(InputEvent event, float x, float y) {
 
                 // Do stuff here
                 Gdx.app.log("button", "start clicked");
                 Services.getGameObject().setScreen(new GameScreen(Services.getGameObject()));
-
-
             }
         });
+
+        SimpleButtonScript arButton = SimpleButtonScript.selfInit(this.sceneLoader.getRoot().getCompositeById("arBtn"));
+        arButton.addListener(new ClickListener(){
+            public void clicked(InputEvent event, float x, float y){
+
+                // Do stuff here
+                Gdx.app.log("button", "AR clicked");
+                Services.getGameObject().setScreen(new ARInfoScreen(Services.getGameObject()));
+            }
+        });
+
+        SimpleButtonScript optionsButton = SimpleButtonScript.selfInit(this.sceneLoader.getRoot().getCompositeById("settingsBtn"));
+        optionsButton.addListener(new ClickListener() {
+            public void clicked(InputEvent event, float x, float y) {
+
+                // Do stuff here
+                Gdx.app.log("button", "optionsButton clicked");
+                Services.getGPGS().unlockAchievementGPGS("CgkIpJKzq7oBEAIQAQ");
+            }
+        });
+
+        SimpleButtonScript leaderboardButton = SimpleButtonScript.selfInit(this.sceneLoader.getRoot().getCompositeById("leaderboardBtn"));
+        leaderboardButton.addListener(new ClickListener() {
+            public void clicked(InputEvent event, float x, float y) {
+
+                // Do stuff here
+                Gdx.app.log("button", "leaderboardButton clicked");
+                Services.getGPGS().getLeaderboardGPGS();
+            }
+        });
+
+
+
 
     }
 

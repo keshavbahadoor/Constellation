@@ -23,8 +23,8 @@ import system.Observerable;
 public class Player extends Entity  implements Observer, Observerable
 {
     private CompositeItem item;
-    private final static float ANGULAR_DAMPING = 40f;
-    private final static float IMPULSE_FORCE = Gdx.graphics.getWidth();
+    private float ANGULAR_DAMPING = 40f;
+    private float IMPULSE_FORCE = 800F;
     private float xForce = 0;
     private float yForce = 0;
     private float objX = 0;
@@ -58,6 +58,9 @@ public class Player extends Entity  implements Observer, Observerable
         particleXright.setVisible(false);
         particleYup.setVisible(false);
         particleYdown.setVisible(false);
+
+        IMPULSE_FORCE = IMPULSE_FORCE * item.mulX;
+        ANGULAR_DAMPING = ANGULAR_DAMPING * item.mulX;
 
         //item.getBody().setFixedRotation(true);
         //item.getBody().setAngularDamping(ANGULAR_DAMPING);

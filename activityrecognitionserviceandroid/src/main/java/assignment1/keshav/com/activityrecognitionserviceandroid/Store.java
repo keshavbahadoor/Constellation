@@ -1,6 +1,7 @@
 package assignment1.keshav.com.activityrecognitionserviceandroid;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -19,7 +20,10 @@ import java.util.Calendar;
 public class Store
 {
     public static Context context;
-    public static String FILENAME = "data.dat";
+    public static final String FILENAME = "data.dat";
+    public static final String PREFS_NAME = "activity_recognition";
+    public static final String[] ALLOWED_ACTIVITIES = {"still", "onfoot", "running", "invehicle"};
+
 
     /**
      * Updates the activity record on file
@@ -255,4 +259,46 @@ public class Store
     {
         createEmptyFile();
     }
+
+    /**
+     * Converts the JSON data to Android Perferences storage
+     */
+    public static void convertToPreferences()
+    {
+        try
+        {
+            if (!fileExists())
+            {
+                createEmptyFile();
+            }
+
+            int count = 0;
+
+            // Get json
+            JSONObject obj = new JSONObject(read());
+
+            // get prefs editor
+            SharedPreferences.Editor editor = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE).edit();
+
+            // Build prefs
+            for (int i=0; i<ALLOWED_ACTIVITIES.length; i++)
+            {
+                JSONObject activity = obj.getJSONObject(ALLOWED_ACTIVITIES[i]);
+                count = activity.getInt("count");
+                editor.putInt(ALLOWED_ACTIVITIES[i], count);
+            }
+
+            // Commit changes
+            editor.commit();
+
+            Log.d("ACTIVITYRECORD", "Convert to preferences completed");
+
+        }
+        catch (Exception ex)
+        {
+            Log.d("ACTIVITYRECORD", "Error converting to perferences: " + ex.getMessage());
+        }
+    }
+
+
 }

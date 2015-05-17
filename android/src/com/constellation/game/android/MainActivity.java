@@ -1,6 +1,7 @@
 package com.constellation.game.android;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -11,6 +12,7 @@ import com.google.android.gms.games.Games;
 import com.google.example.games.basegameutils.GameHelper;
 
 import assignment1.keshav.com.activityrecognitionserviceandroid.ActivityRecognitionService;
+import assignment1.keshav.com.activityrecognitionserviceandroid.Store;
 import services.GoogleGameServices;
 
 /**
@@ -41,6 +43,10 @@ public class MainActivity extends AndroidApplication implements GameHelper.GameH
     {
         super.onStart();
         this.gameHelper.onStart(this);
+
+        // Convert saved data to preferences
+        Store.context = this.getContext();
+        Store.convertToPreferences();
     }
 
     @Override
@@ -55,8 +61,8 @@ public class MainActivity extends AndroidApplication implements GameHelper.GameH
          * life
          */
         Log.d("On Stop", "start AR Service");
-        Intent arServiceIntent = new Intent(this, ActivityRecognitionService.class);
-        this.startService(arServiceIntent);
+//        Intent arServiceIntent = new Intent(this, ActivityRecognitionService.class);
+//        this.startService(arServiceIntent);
     }
 
     @Override
@@ -118,10 +124,18 @@ public class MainActivity extends AndroidApplication implements GameHelper.GameH
     {
         if (this.gameHelper.isSignedIn())
         {
-            this.startActivityForResult(Games.Leaderboards.getLeaderboardIntent(this.gameHelper.getApiClient(), "" + R.string.app_id), 100);
+            Log.d("LEADER_BOARD_DEBUG", "Signed in");
+            try {
+                this.startActivityForResult(Games.Leaderboards.getLeaderboardIntent(this.gameHelper.getApiClient(), getResources().getString(R.string.LeaderbaordID) ), 100);
+            }
+            catch (Exception ex)
+            {
+                Log.d("LEADER_BOARD_DEBUG", "Error!. Exception: " + ex.getMessage() + "\n" + ex.getStackTrace());
+            }
         }
         else if ( ! gameHelper.isConnecting())
         {
+            Log.d("LEADER_BOARD_DEBUG", "Not signed in, going to try login in");
             this.loginGPGS();
         }
     }

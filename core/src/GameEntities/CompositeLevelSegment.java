@@ -22,7 +22,7 @@ public class CompositeLevelSegment extends Entity
     private CompositeItem top;
     private CompositeItem bot;
 
-    private float moveSpeed = 400F;
+    private float moveSpeed = 300F;
     private static final float xDiffOffset = 50F;
 
 
@@ -42,6 +42,7 @@ public class CompositeLevelSegment extends Entity
         this.segment = segment;
         this.top = segment.getCompositeById("top");
         this.bot = segment.getCompositeById("bot");
+        this.moveSpeed = moveSpeed * segment.mulX;
     }
 
     /**
@@ -71,11 +72,11 @@ public class CompositeLevelSegment extends Entity
         if (isMoving)
         {
             // update composite X coordinate
-            segment.setX(segment.getX() + this.direction * delta * this.moveSpeed);
+            segment.setX((segment.getX() + this.direction * delta * this.moveSpeed) );
 
             // move physics bodies
-            setBodyX(this.top, (this.top.getBody().getPosition().x / PhysicsBodyLoader.SCALE) + this.direction * delta * this.moveSpeed);
-            setBodyX(this.bot, (this.bot.getBody().getPosition().x / PhysicsBodyLoader.SCALE) + this.direction * delta * this.moveSpeed);
+            setBodyX(this.top, ((this.top.getBody().getPosition().x / PhysicsBodyLoader.SCALE) + this.direction * delta * this.moveSpeed));
+            setBodyX(this.bot, ((this.bot.getBody().getPosition().x / PhysicsBodyLoader.SCALE) + this.direction * delta * this.moveSpeed) );
         }
 
         // add to object pool
@@ -103,13 +104,16 @@ public class CompositeLevelSegment extends Entity
      */
     public void resetSegment()
     {
-        this.segment.setX(Gdx.graphics.getWidth() + xDiffOffset);
+        this.segment.setX((Gdx.graphics.getWidth() + xDiffOffset) );
+
+        this.segment.setY(0);
+
 
         // reset bottom
-        this.setBodyX(this.top, Gdx.graphics.getWidth() + xDiffOffset);
+        this.setBody(this.top, (Gdx.graphics.getWidth() + xDiffOffset), 0);
 
         // reset top
-        this.setBodyX(this.bot, Gdx.graphics.getWidth() + xDiffOffset);
+        this.setBody(this.bot, (Gdx.graphics.getWidth() + xDiffOffset), 0 );
 
         this.segment.setVisible(true);
         this.isMoving = true;
@@ -121,6 +125,32 @@ public class CompositeLevelSegment extends Entity
         try {
             i.getBody().setTransform(x * PhysicsBodyLoader.SCALE,
                     i.getBody().getPosition().y,
+                    i.getBody().getAngle());
+        }
+        catch (Exception e)
+        {
+            Gdx.app.log("ERROR", "Error : " + e.getMessage());
+        }
+    }
+
+    private void setBodyY(CompositeItem i, float y)
+    {
+        try {
+            i.getBody().setTransform(i.getBody().getPosition().x,
+                    y * PhysicsBodyLoader.SCALE,
+                    i.getBody().getAngle());
+        }
+        catch (Exception e)
+        {
+            Gdx.app.log("ERROR", "Error : " + e.getMessage());
+        }
+    }
+
+    private void setBody(CompositeItem i, float x, float y)
+    {
+        try {
+            i.getBody().setTransform(x * PhysicsBodyLoader.SCALE,
+                    y * PhysicsBodyLoader.SCALE,
                     i.getBody().getAngle());
         }
         catch (Exception e)
