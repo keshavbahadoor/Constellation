@@ -54,11 +54,6 @@ public class ARInfoWindowScript implements IScript
             if (currBarSize[i] > maxBarSize[i]) currBarSize[i] = maxBarSize[i];
         }
 
-        stillBar.setWidth(currBarSize[0]);
-        walkingBar.setWidth(currBarSize[1]);
-        runningBar.setWidth(currBarSize[2]);
-        vehicleBar.setWidth(currBarSize[3]);
-
 
         if (currBarSize[0] == maxBarSize[0])
             Services.getAchievementService().unlockRest();
@@ -68,6 +63,11 @@ public class ARInfoWindowScript implements IScript
             Services.getAchievementService().unlockRun();;
         if (currBarSize[3] == maxBarSize[3])
             Services.getAchievementService().unlockVehicle();
+
+        stillBar.setWidth(currBarSize[0]);
+        walkingBar.setWidth(currBarSize[1]);
+        runningBar.setWidth(currBarSize[2]);
+        vehicleBar.setWidth(currBarSize[3]);
 
     }
 
